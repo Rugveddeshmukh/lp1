@@ -102,7 +102,7 @@ const styles = {
   section: {
     backgroundColor: '#050829',
     padding: '40px 20px',
-    fontFamily: 'Poppins, sans-serif',
+    fontFamily: 'outfit, sans-serif',
     color: '#fff',
     textAlign: 'center',
   },
@@ -119,6 +119,7 @@ const styles = {
     flexWrap: 'wrap',
     justifyContent: 'center',
     gap: '20px',
+    maxwidth:'300%'
   },
   card: {
     backgroundColor: '#111b5c',
@@ -127,6 +128,7 @@ const styles = {
     textAlign: 'center',
     boxShadow: '0 0 8px rgba(0,0,0,0.3)',
     transition: 'transform 0.3s ease',
+    
   },
   image: {
     width: '100%',
