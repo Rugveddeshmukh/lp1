@@ -28,15 +28,29 @@ const experts = [
 ];
 
 const ExpertsSection = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <div style={styles.section}>
       <h2 style={styles.heading}>
         <span style={styles.highlight}>150+ Experts</span> Went from 0 to 1Cr+
       </h2>
 
-      <div style={styles.gridContainer}>
+      <div
+        style={{
+          ...styles.cardContainer,
+          flexDirection: isMobile ? 'column' : 'row',
+        }}
+      >
         {experts.map((expert, index) => (
-          <div key={index} style={styles.card}>
+          <div key={index} style={{ ...styles.card, width: isMobile ? '90%' : '280px' }}>
             <img src={expert.img} alt={expert.name} style={styles.image} />
             <div style={styles.name}>{expert.name}</div>
             <div style={styles.role}>{expert.role}</div>
@@ -46,11 +60,25 @@ const ExpertsSection = () => {
       </div>
 
       <div style={{ textAlign: 'center', marginTop: '40px' }}>
-        <button className="animated-button" style={styles.button}>
+        <button
+          className="animated-button"
+          style={{
+            background: 'linear-gradient(49.12deg, #FFC74B 0%, #E39600 22%)',
+            color: 'black',
+            fontSize: isMobile ? '16px' : '20px',
+            padding: isMobile ? '12px 40px' : '14px 40px',
+            border: 'none',
+            borderRadius: '14px',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            width: isMobile ? '100%' : '80%',
+          }}
+        >
           Join Now For FREE!
         </button>
       </div>
 
+      {/* Animation Styles */}
       <style>{`
         @keyframes wiggle {
           0% { transform: translateX(0); }
@@ -86,12 +114,12 @@ const styles = {
   highlight: {
     color: '#f85a40',
   },
-  gridContainer: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-    gap: '20px',
+  cardContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
     justifyContent: 'center',
-    alignItems: 'stretch',
+    gap: '20px',
+    
   },
   card: {
     backgroundColor: '#111b5c',
@@ -99,8 +127,8 @@ const styles = {
     padding: '16px',
     textAlign: 'center',
     boxShadow: '0 0 8px rgba(0,0,0,0.3)',
-    display: 'flex',
-    flexDirection: 'column',
+    transition: 'transform 0.3s ease',
+    
   },
   image: {
     width: '100%',
@@ -128,19 +156,6 @@ const styles = {
     fontSize: '12px',
     whiteSpace: 'pre-line',
     lineHeight: '1.4',
-    marginTop: 'auto',
-  },
-  button: {
-    background: 'linear-gradient(49.12deg, #FFC74B 0%, #E39600 22%)',
-    color: 'black',
-    fontSize: '18px',
-    padding: '14px 40px',
-    border: 'none',
-    borderRadius: '14px',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-    maxWidth: '300px',
-    width: '100%',
   },
 };
 
