@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+
+ 
+import Banner from './components/Banner';
+import ExpertsSection from './components/ExpertSection';
+import FameSection from './components/FameSection';
+import LearnSection from './components/LearnSection';
+import MentorIntro from './components/MentorIntro';
+import SuccessStories from './components/SuccessStories';
+import ConfusedBenefitsSection from './components/ConfusedBenefitsSection';
+import FAQSection from './components/FAQSection';
+import OfferBanner from './components/offerBanner';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Banner/>
+      <LearnSection/>
+      <FameSection/>
+      <ExpertsSection/> 
+      <SuccessStories/> 
+      <MentorIntro/>  
+      <ConfusedBenefitsSection/>
+      <FAQSection/>
+      <OfferBanner/>
     </div>
   );
 }
