@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const faqs = [
   {
@@ -13,16 +13,26 @@ const faqs = [
   },
   {
     question: 'Date and time of the workshop?',
-    answer: 'These workshops happen on different days of the week and at different times. Please check this page details for the workshop date and time.',
+    answer:
+      'These workshops happen on different days of the week and at different times. Please check this page details for the workshop date and time.',
   },
   {
     question: 'Are the provided resources free?',
-    answer: 'Yes! I provide all resources for free. When you attend this webinar LIVE, you will get my A.I Niche Clarity Tool + ChatGPT Launch Prompts that can help you get started with speed!',
+    answer:
+      'Yes! I provide all resources for free. When you attend this webinar LIVE, you will get my A.I Niche Clarity Tool + ChatGPT Launch Prompts that can help you get started with speed!',
   },
 ];
 
 const FAQSection = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkWidth = () => setIsMobile(window.innerWidth <= 768);
+    checkWidth();
+    window.addEventListener('resize', checkWidth);
+    return () => window.removeEventListener('resize', checkWidth);
+  }, []);
 
   const toggleAccordion = (index) => {
     setActiveIndex(index === activeIndex ? null : index);
@@ -90,7 +100,25 @@ const FAQSection = () => {
           ))}
         </div>
 
-        <button style={styles.button} className="wiggle">Grab Your FREE Seat Now</button>
+        <button
+          style={{
+            background: 'linear-gradient(to right, #f8b500, #e68a00)',
+            border: 'none',
+            fontSize: isMobile ? '16px' : '20px',
+            padding: isMobile ? '12px 30px' : '14px 40px',
+            fontWeight: '700',
+            color: '#000',
+            borderRadius: '12px',
+            marginTop: '20px',
+            cursor: 'pointer',
+            width: isMobile ? '90%' : '50%',
+            maxWidth: '350%',
+            animation: 'wiggle 1.5s ease-in-out infinite',
+          }}
+          className="wiggle"
+        >
+          Grab Your FREE Seat Now
+        </button>
       </div>
     </>
   );
@@ -103,7 +131,7 @@ const styles = {
     color: '#fff',
     fontFamily: 'Poppins, sans-serif',
     textAlign: 'center',
-    
+    minHeight: '105vh'
   },
   heading: {
     fontSize: '28px',
@@ -144,19 +172,6 @@ const styles = {
     borderRadius: '8px',
     fontSize: '15px',
     lineHeight: '1.6',
-  },
-  button: {
-    marginTop: '40px',
-    background: 'linear-gradient(49.12deg, #FFC74B 0%, #E39600 22%)',
-    color: '#000',
-    fontSize: '18px',
-    padding: '14px 40px',
-    border: 'none',
-    borderRadius: '14px',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-    width: '75%',
-   
   },
 };
 

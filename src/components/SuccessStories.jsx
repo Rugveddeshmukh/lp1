@@ -83,15 +83,15 @@ const SuccessStories = () => {
           <button
             className="wiggle"
             style={{
-              background: 'linear-gradient(49.12deg, #FFC74B 0%, #E39600 22%)',
+              background: 'linear-gradient(to right, #f8b500, #e68a00)',
               color: 'black',
               fontSize: isMobile ? '16px' : '20px',
-              padding: isMobile ? '12px 30px' : '14px 40px',
+              padding: isMobile ? '12px 30px' : '16px 100px',
               border: 'none',
               borderRadius: '20px',
               fontWeight: 'bold',
               cursor: 'pointer',
-              width: isMobile ? '90%' : '80%',
+              width: isMobile ? '90%' : '60%',
             }}
           >
             Join Now For FREE!
@@ -129,14 +129,14 @@ const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    gap: '15px',
+    gap: '20px',
   },
   card: {
     backgroundColor: '#0a1a48',
     borderRadius: '20px',
     padding: '10px',
     width: '100%',
-    maxWidth: '320px',
+    maxWidth: '380px',
     boxShadow: '0 0 12px rgba(0, 0, 0, 0.3)',
   },
   videoWrapper: {

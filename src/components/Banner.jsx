@@ -152,7 +152,7 @@ const FreeMasterclass = () => {
               <button
                 className="wiggle-button"
                 style={{
-                  background: 'linear-gradient(49.12deg, #FFC74B 0%, #E39600 100%)',
+                  background: 'linear-gradient(to right, #f8b500, #e68a00)',
                   color: 'black',
                   fontSize: isMobile ? '18px' : '20px',
                   padding: isMobile ? '12px 30px' : '14px 40px',

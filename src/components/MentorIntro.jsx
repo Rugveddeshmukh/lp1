@@ -110,7 +110,7 @@ const styles = {
     fontWeight: '700',
   },
   button: {
-    background: 'linear-gradient(49.12deg, #FFC74B 0%, #E39600 22%)',
+    background: 'linear-gradient(to right, #f8b500, #e68a00)',
     color: '#000',
     fontSize: '18px',
     padding: '14px 36px',

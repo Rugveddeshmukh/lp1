@@ -1,7 +1,16 @@
-import React from 'react';
-import hallOfFameImage from '../Assest/coches-img-1.webp'; // Update the path as needed
+import React, { useEffect, useState } from 'react';
+import hallOfFameImage from '../Assest/coches-img-1.webp'; // Ensure the path is correct
 
 const HallOfFameSection = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const sectionStyle = {
     background: 'radial-gradient(107.67% 107.67% at 50% 20.81%, #000B3E 0%, #020202 100%)',
     padding: '60px 20px',
@@ -14,38 +23,37 @@ const HallOfFameSection = () => {
     fontSize: '18px',
     fontWeight: '600',
     marginBottom: '10px',
-    color: '#fff',
   };
 
   const titleStyle = {
-    fontSize: '28px',
+    fontSize: 'clamp(1.6rem, 3vw, 2.2rem)',
     fontWeight: '700',
     marginBottom: '40px',
     maxWidth: '800px',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    marginInline: 'auto',
     lineHeight: '1.4',
   };
 
   const imageStyle = {
-    width: '80%',
+    width: '100%',
     maxWidth: '1000px',
     borderRadius: '30px',
-    margin: '0 auto',
+    margin: '0 auto 40px',
     display: 'block',
   };
 
   const buttonStyle = {
     background: 'linear-gradient(to right, #f8b500, #e68a00)',
     border: 'none',
-    padding: '14px 40px',
-    fontSize: '16px',
+    fontSize: isMobile ? '16px' : '20px',
+    padding: isMobile ? '12px 30px' : '14px 40px',
     fontWeight: '700',
     color: '#000',
     borderRadius: '12px',
-    marginTop: '40px',
+    marginTop: '20px',
     cursor: 'pointer',
-    width: '78%',
+    width: isMobile ? '90%' : '60%',
+    maxWidth: '350%',
     animation: 'wiggle 1.5s ease-in-out infinite',
   };
 
@@ -62,10 +70,8 @@ const HallOfFameSection = () => {
         style={imageStyle}
       />
 
-      {/* Button with animation */}
       <button style={buttonStyle}>Grab Your FREE Seat Now</button>
 
-      {/* Animation CSS */}
       <style>
         {`
           @keyframes wiggle {

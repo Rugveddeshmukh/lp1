@@ -29,6 +29,14 @@ const benefits = [
 
 const ConfusedBenefitsSection = () => {
   const [animate, setAnimate] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const timeout = setTimeout(() => setAnimate(true), 100);
@@ -87,7 +95,14 @@ const ConfusedBenefitsSection = () => {
           ))}
         </div>
 
-        <button style={styles.button} className="wiggle">Grab Your FREE Seat Now</button>
+        <button style={{
+          ...styles.button,
+          fontSize: isMobile ? '16px' : '20px',
+          padding: isMobile ? '12px 30px' : '14px 40px',
+          width: isMobile ? '90%' : '60%',
+        }} className="wiggle">
+          Grab Your FREE Seat Now
+        </button>
       </div>
     </>
   );
@@ -132,17 +147,16 @@ const styles = {
     lineHeight: '1.6',
   },
   button: {
-    background: 'linear-gradient(49.12deg, #FFC74B 0%, #E39600 22%)',
-    color: '#000',
-    fontSize: '18px',
-    padding: '14px 36px',
+    background: 'linear-gradient(to right, #f8b500, #e68a00)',
     border: 'none',
-    borderRadius: '14px',
-    fontWeight: 'bold',
+    fontWeight: '700',
+    color: '#000',
+    borderRadius: '12px',
+    marginTop: '20px',
     cursor: 'pointer',
-    width: '80%',
-    
-  },
+    Width: '80%',
+    animation: 'wiggle 1.5s ease-in-out infinite',
+  }
 };
 
 export default ConfusedBenefitsSection;

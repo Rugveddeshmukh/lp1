@@ -9,6 +9,7 @@ import SuccessStories from './components/SuccessStories';
 import ConfusedBenefitsSection from './components/ConfusedBenefitsSection';
 import FAQSection from './components/FAQSection';
 import OfferBanner from './components/offerBanner';
+import HowExpertsUseChatGPT from './components/HowExpertsUseChatGPT';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
       <Banner/>
       <LearnSection/>
       <FameSection/>
-      <ExpertsSection/> 
+      <HowExpertsUseChatGPT/>
+      {/* <ExpertsSection/>  */}
       <SuccessStories/> 
       <MentorIntro/>  
       <ConfusedBenefitsSection/>

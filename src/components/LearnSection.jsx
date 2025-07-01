@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const LearnSection = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const containerStyle = {
     background: 'radial-gradient(107.67% 107.67% at 50% 20.81%, #000B3E 0%, #020202 100%)',
     color: '#fff',
@@ -10,7 +19,7 @@ const LearnSection = () => {
   };
 
   const headingStyle = {
-    fontSize: '35px',
+    fontSize: isMobile ? '26px' : '35px',
     fontWeight: '700',
     marginBottom: '20px'
   };
@@ -37,11 +46,14 @@ const LearnSection = () => {
     backgroundColor: '#18215c',
     borderRadius: '16px',
     padding: '30px 20px',
-    width: '260px',
+    width: '280px',
     textAlign: 'left',
     position: 'relative',
-    animation: 'fadeInUp 1s ease forwards',
-    opacity: 0
+    opacity: 0,
+    animationName: 'fadeInUp',
+    animationDuration: '1s',
+    animationTimingFunction: 'ease',
+    animationFillMode: 'forwards'
   };
 
   const labelStyle = {
@@ -71,15 +83,35 @@ const LearnSection = () => {
   const buttonStyle = {
     background: 'linear-gradient(to right, #f8b500, #e68a00)',
     border: 'none',
-    padding: '14px 40px',
-    fontSize: '18px',
+    fontSize: isMobile ? '16px' : '20px',
+    padding: isMobile ? '12px 30px' : '14px 40px',
     fontWeight: '700',
     color: '#000',
     borderRadius: '12px',
+    marginTop: '20px',
     cursor: 'pointer',
-    width: '75%',
-    animation: 'wiggle 1.5s infinite ease-in-out'
+    width: isMobile ? '90%' : '60%',
+    maxWidth: '350%',
+    animation: 'wiggle 1.5s ease-in-out infinite',
   };
+
+  const cardData = [
+    {
+      label: 'Secret #1',
+      title: 'Find Your Niche',
+      text: 'Uncover your most profitable niche in just 10 minutes with my powerful AI tool – no expertise needed'
+    },
+    {
+      label: 'Secret #2',
+      title: 'Design Digital Products',
+      text: 'Create high-value, high-profit courses that people will pay premium prices for – using my foolproof “ChatGPT Prompts”'
+    },
+    {
+      label: 'Secret #3',
+      title: 'Get Autopilot Sales',
+      text: "Get my 'Video Money Funnel' to attract premium buyers 24/7 and grow your tribe."
+    }
+  ];
 
   return (
     <div style={containerStyle}>
@@ -92,27 +124,18 @@ const LearnSection = () => {
       </p>
 
       <div style={cardContainerStyle}>
-        {[1, 2, 3].map((_, i) => (
+        {cardData.map((card, i) => (
           <div key={i} style={{ ...cardStyle, animationDelay: `${i * 0.2}s` }}>
-            <div style={labelStyle}>Secret #{i + 1}</div>
-            <div style={cardTitleStyle}>
-              {i === 0 && 'Find Your Niche'}
-              {i === 1 && 'Design Digital Products'}
-              {i === 2 && 'Get Autopilot Sales'}
-            </div>
-            <div style={cardTextStyle}>
-              {i === 0 &&
-                'Uncover your most profitable niche in just 10 minutes with my powerful AI tool – no expertise needed'}
-              {i === 1 &&
-                'Create high-value, high-profit courses that people will pay premium prices for – using my foolproof “ChatGPT Prompts”'}
-              {i === 2 &&
-                "Get my 'Video Money Funnel' to attract premium buyers 24/7 and grow your tribe."}
-            </div>
+            <div style={labelStyle}>{card.label}</div>
+            <div style={cardTitleStyle}>{card.title}</div>
+            <div style={cardTextStyle}>{card.text}</div>
           </div>
         ))}
       </div>
 
-      <button style={buttonStyle}>Grab Your FREE Seat Now</button>
+      <button style={buttonStyle} aria-label="Grab your free seat now">
+        Grab Your FREE Seat Now
+      </button>
 
       {/* Animation Styles */}
       <style>

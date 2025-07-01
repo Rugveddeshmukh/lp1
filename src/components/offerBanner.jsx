@@ -16,26 +16,47 @@ const OfferBanner = () => {
         .wiggle-button {
           animation: wiggle 0.5s ease-in-out infinite;
         }
+
+        @media (max-width: 768px) {
+          .offer-container {
+            flex-direction: column;
+            text-align: center;
+            gap: 10px;
+            padding: 15px 10px;
+          }
+
+          .offer-left, .offer-right {
+            margin: 0;
+          }
+
+          .offer-button {
+            width: 100% !important;
+          }
+        }
       `}</style>
 
       <div
+        className="offer-container"
         style={{
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          backgroundColor: '#fff',
           display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-around',
+          justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '15px',
-          borderRadius: '10px 10px 0 0',
-          boxShadow: '0 -1px 5px rgba(0, 0, 0, 0.1)',
-          borderTopLeftRadius: '40px',
-          borderTopRightRadius: '40px',
-        
-          
+          padding: '15px 40px',
+          borderTopLeftRadius: '20px',
+          borderTopRightRadius: '20px',
+          boxShadow: '0 -1px 10px rgba(0, 0, 0, 0.15)',
+          zIndex: 9999,
+          flexWrap: 'wrap',
           
         }}
       >
         {/* Left Side: Price and Countdown */}
-        <div style={{ padding: '10px 20px', marginLeft: '15%' }}>
+        <div className="offer-left" style={{ padding: '10px 0',marginLeft:'10%' }}>
           <div style={{ fontSize: '28px', fontWeight: 'bold', color: '#000' }}>
             FREE{' '}
             <span
@@ -61,9 +82,9 @@ const OfferBanner = () => {
         </div>
 
         {/* Right Side: Register Button */}
-        <div style={{ padding: '10px 20px', marginRight: '15%' }}>
+        <div className="offer-right" style={{ padding: '10px 0',marginRight:'10%' }}>
           <button
-            className="wiggle-button"
+            className="wiggle-button offer-button"
             style={{
               background: 'linear-gradient(90deg, #FFC74B 0%, #E39600 100%)',
               padding: '14px 32px',
@@ -74,7 +95,8 @@ const OfferBanner = () => {
               borderRadius: '12px',
               cursor: 'pointer',
               whiteSpace: 'nowrap',
-              width: '160%',
+              width: '270px',
+              
             }}
           >
             Register Now
